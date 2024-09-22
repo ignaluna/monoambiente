@@ -9,23 +9,14 @@ import { songs } from './mockDataBase';
 import useFetchSongs from '@/hooks/use-get-songs-rockola';
 import useAddSong from '@/hooks/use-add-songs';
 
-type SongRequest = {
-  song: string;
-  name: string;
-  message: string;
-};
-
 export default function RockolaComponent() {
   const [search, setSearch] = useState('');
   const [filteredSongs, setFilteredSongs] = useState(songs);
   const [selectedSong, setSelectedSong] = useState('');
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
-  const {
-    songs: requests,
-    isLoadingFetchSongs: isLoadingRequests,
-    fetchSongsError: requestsError,
-  } = useFetchSongs();
+  const { songs: requests, isLoadingFetchSongs: isLoadingRequests } =
+    useFetchSongs();
   useEffect(() => {
     setFilteredSongs(
       songs.filter((song) => song.toLowerCase().includes(search.toLowerCase()))
